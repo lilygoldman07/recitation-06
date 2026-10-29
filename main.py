@@ -69,6 +69,9 @@ class BinaryHeap:
         print("reheaping  up from %d"%i)
         while ((c != 0) and (self.H[c] < self.H[p])):
             ## TODO
+            self.H[c], self.H[p] = self.H[p], self.H[c]
+            c = p
+            p = self.parent(c)
             pass
 
     # restore the heap property going downward from node i
@@ -89,6 +92,15 @@ class BinaryHeap:
         r = self.rchild(i)
         while (l > 0 and (self.H[c] > self.H[l])) or (r > 0 and (self.H[c] > self.H[r])):
             ## TODO
+            if r < 0 or self.H[l] <= self.H[r]:
+                smaller = l
+            else:
+                smaller = r
+            self.H[c], self.H[smaller] = self.H[smaller], self.H[c]
+            # keep going down from wherever the value landed
+            c = smaller
+            l = self.lchild(c)
+            r = self.rchild(c)
             pass
         
         
@@ -105,6 +117,8 @@ class BinaryHeap:
         m = self.H[0]
         if (len(self.H) > 1):
             ## TODO
+            self.H[0] = self.H.pop()
+            self.reheapDown(0)
             pass
 
         else:
@@ -119,6 +133,8 @@ class BinaryHeap:
 
         Returns nothing.
         """
+        self.H.append(x)
+        self.reheapUp(len(self.H) - 1)
         pass
 
 def heapsort(a):
@@ -136,5 +152,10 @@ def heapsort(a):
     H = BinaryHeap()
     sorted_a = []
     ## TO DO
+    for x in a:
+        H.insert(x)
+    # pulling the min out over and over gives the values in sorted order
+    while len(H.H) > 0:
+        sorted_a.append(H.deleteMin())
 
     return sorted_a
