@@ -17,8 +17,7 @@ class BinaryHeap:
         j....index of the left child of node i, or -1 if n/a
         """
         if (2*i + 1) < len(self.H):
-            ## TODO
-            pass
+            return 2*i + 1
         else:
             return -1
 
@@ -32,8 +31,7 @@ class BinaryHeap:
         j....index of the right child of node i, or -1 if n/a
         """
         if (2*i + 2) < len(self.H):
-            ## TODO
-            pass
+            return 2*i + 2
         else:
             return -1
 
@@ -47,10 +45,9 @@ class BinaryHeap:
         j....index of the parent of node i, or -1 if n/a
         """
         if i > 0:
-            ## TODO 
-            pass
+            return (i - 1) // 2
         else:
-            return 0
+            return -1
 
     def reheapUp(self, i):
         """
