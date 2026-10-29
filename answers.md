@@ -2,8 +2,6 @@
 ## Answers
 
 **Name:**Lily Goldman
-**Name:**_________________________
-
 
 Place all written answers from `recitation-06.md` here for easier grading.
 
